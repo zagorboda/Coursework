@@ -77,17 +77,62 @@ def get_flight_info_by_surname(surname):
             print("Flight: {} ; from {} to {} ; date: {}".format(row[0], data[0].split('|')[0], data[0].split('|')[1], data[1]))
 
     connection.close()
-        
+
+def get_short_flight_info_by_direction(direction):
+    connection = connector()
+    curs = cursor(connection)
+
+    print("\nFlights from   " + direction.split('|')[0] + "   to   " + direction.split('|')[1] + "\n")
+
+    curs.execute("SELECT number,date FROM flights WHERE direction = '{}'".format(direction))
+    rows = curs.fetchall()
+    for row in rows:
+        print("Flight : " + row[0] + ". Departure date : " + row[1])
+        curs.execute("SELECT surname, class FROM passenger WHERE number = '{}' ORDER BY surname ASC".format(row[0]))
+        passengers = rows = curs.fetchall()
+        for passenger in passengers:
+            print(passenger[0])
+            # print(passenger[0], passenger[1] + " class")
+        print()
+    
+    connection.close()
 
 
-# подключение к базе данных
+def get_flight_info_by_direction(direction):
+    connection = connector()
+    curs = cursor(connection)
 
-# курсор
-connection = connector()
-curs = cursor(connection)
-# команда SQL для создания таблицы в базе данных
+    print("\nFlights from   " + direction.split('|')[0] + "   to   " + direction.split('|')[1] + "\n")
 
-# команда SQL для вставки данных в таблицу
+    curs.execute("SELECT * FROM flights WHERE direction = '{}'".format(direction))
+
+    rows = curs.fetchall()
+    for row in rows:
+        print("Number : ", row[0])
+        print("All seats : ", row[2])
+        print("Free seats : ", row[3])
+        print("Departure date : ", row[4])
+        print()
+
+    connection.close()
+
+def get_flight_info_by_date(date):
+    connection = connector()
+    curs = cursor(connection)
+
+    print("Date : ", date, "\n")
+
+    curs.execute("SELECT * FROM flights WHERE date = '{}'".format(date))
+
+    rows = curs.fetchall()
+    for row in rows:
+        print("Number : ", row[0])
+        print("Direction : from " + row[1].split('|')[0] + " to " + row[1].split('|')[1])
+        print("All seats : ", row[2])
+        print("Free seats : ", row[3])
+        print()
+
+    # connection.close()
 
 # sql_command = "INSERT INTO table1 VALUES ('abc', 34);"
 
@@ -112,30 +157,19 @@ curs = cursor(connection)
 
 # insert_flight(["123456", "New-York|MilaParis", 440, 250, "30.05.2020", "business"])
 
-surname = 'test'
+# surname = 'test'
 
-get_flight_info_by_surname(surname)
+# departure = "Kyiv"
+# arrival = "Milan"
+# direction = departure + "|" + arrival
+
+# get_flight_info_by_direction(direction)
+
+# date = "25.05.2020"
+
+# get_flight_info_by_date(date)
 
 # curs.execute("SELECT number FROM passenger WHERE surname = 'abc'")
 
-# rows = curs.fetchall()
-
-# for row in rows:
-#     print(row[0])
-
 # number = 123
 # select_free_seats(number, curs)
-
-# for row in rows:
-#     print(row)
-#     print("Flight from", row[0].split('|')[0] , "to", row[0].split('|')[1])
-
-# Сохранить изменения в файлах. Никогда не пропускай это.
-
-# Если мы пропустим это, ничего не будет сохранено в базе данных.
-
-connection.commit()
-
-# закрыть соединение
-
-connection.close()
