@@ -41,13 +41,15 @@ def select_free_seats(number):
     curs.execute("SELECT free_seats FROM flights WHERE number = '{}'".format(number))
     rows = curs.fetchall()
     if len(rows) != 0:
-        print("Number of free seats for {} flight is {}".format(number,rows[0][0]))
+        return rows[0][0]
+        # print("Number of free seats for {} flight is {}".format(number,rows[0][0]))
     else:
-        print("Flight {} doesn't found. Make shure you enter correct number".format(number))
+        # print("Flight {} doesn't found. Make shure you enter correct number".format(number))
+        return -1
 
     connection.close()
 
-def all_bagage_cost(number):
+def all_baggage_cost(number):
     connection = connector()
     curs = cursor(connection)
 
@@ -173,4 +175,3 @@ def get_flight_info_by_date(date):
 
 # number = 123
 # select_free_seats(number, curs)
-print()
