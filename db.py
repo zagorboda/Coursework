@@ -173,3 +173,4 @@ def get_flight_info_by_date(date):
 
 # number = 123
 # select_free_seats(number, curs)
+print()
