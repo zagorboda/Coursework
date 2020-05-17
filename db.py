@@ -105,37 +105,47 @@ def get_flight_info_by_direction(direction):
     connection = connector()
     curs = cursor(connection)
 
-    print("\nFlights from   " + direction.split('|')[0] + "   to   " + direction.split('|')[1] + "\n")
-
     curs.execute("SELECT * FROM flights WHERE direction = '{}'".format(direction))
 
     rows = curs.fetchall()
-    for row in rows:
-        print("Number : ", row[0])
-        print("All seats : ", row[2])
-        print("Free seats : ", row[3])
-        print("Departure date : ", row[4])
-        print()
 
     connection.close()
+
+    if len(rows) == 0:
+        return -1
+    else:
+        return rows
 
 def get_flight_info_by_date(date):
     connection = connector()
     curs = cursor(connection)
 
-    print("Date : ", date, "\n")
-
     curs.execute("SELECT * FROM flights WHERE date = '{}'".format(date))
 
     rows = curs.fetchall()
-    for row in rows:
-        print("Number : ", row[0])
-        print("Direction : from " + row[1].split('|')[0] + " to " + row[1].split('|')[1])
-        print("All seats : ", row[2])
-        print("Free seats : ", row[3])
-        print()
 
-    # connection.close()
+    connection.close()
+
+    if len(rows) == 0:
+        return -1
+    else:
+        return rows
+
+def get_flight_info_by_number(number):
+    connection = connector()
+    curs = cursor(connection)
+
+    curs.execute("SELECT * FROM flights WHERE number = '{}' AND date != '0'".format(number))
+
+    rows = curs.fetchall()
+
+    connection.close()
+
+    if len(rows) == 0:
+        return -1
+    else:
+        return rows
+
 
 # sql_command = "INSERT INTO table1 VALUES ('abc', 34);"
 
