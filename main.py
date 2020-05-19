@@ -9,19 +9,29 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.change_info.clicked.connect(self.show1)
-
-        self.radio_number.toggled.connect(self.onClicked)
-        self.radio_direction.toggled.connect(self.onClicked)
-        self.radio_date.toggled.connect(self.onClicked)
-        self.radio_number.setChecked(True)
-
-        self.get_info_direction.hide()
-        self.get_info_date.hide()
 
         self.find_info_number_btn.clicked.connect(self.select_info_by_number)
         self.find_info_direction_btn.clicked.connect(self.select_info_by_direction)
         self.find_info_date_btn.clicked.connect(self.select_info_by_date)
+
+        self.get_info.clicked.connect(lambda: self.show_(0))
+        self.additional_info.clicked.connect(lambda: self.show_(1))
+
+
+        self.get_number_of_free_seats_btn.clicked.connect(self.select_free_seats)
+        self.get_baggage_sum_btn.clicked.connect(self.select_baggage_sum)
+
+
+
+        
+        # self.tabWidget.setStyleSheet("""
+        # QTabBar::tab {
+        #     //margin-left:10px;
+        #     color:red;
+        #     }
+        # """)
+
+        # self.stackedWidget.setCurrentIndex(6)
 
         # self.statusbar.showMessage("123")
         # self.statusBar().hide()
@@ -32,21 +42,24 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         # for i in range(50):
         #     self.listWidget.addItem(str(i))
 
-    def onClicked(self):
-        radioBtn = self.sender()
-        if radioBtn.isChecked():
-            if radioBtn.text() == "Number":
-                self.get_info_number.show()
-                self.get_info_direction.hide()
-            if radioBtn.text() == "Direction":
-                self.get_info_direction.show()
-                self.get_info_date.hide()
-            if radioBtn.text() == "Date":
-                self.get_info_direction.show()
-                self.get_info_date.show()
+    def show_(self, index):
+        self.stackedWidget.setCurrentIndex(index)
 
     def select_free_seats(self):
-        self.label.setText(str(db.select_free_seats(str(self.line.text()))))
+        res = db.select_free_seats(str(self.free_seats_number_input.text()))
+        if res == -1:
+            self.free_seats_number_input_error.setText("No such flight")
+        else:
+            self.free_seats_number_input_error.setText("")
+            self.number_of_free_seats.setText(str(res))
+
+    def select_baggage_sum(self):
+        res = db.all_baggage_cost(str(self.baggage_sum_number_input.text()))
+        if res == -1:
+            self.baggage_sum_number_input_error.setText("No such flight")
+        else:
+            self.baggage_sum_number_input_error.setText("")
+            self.baggage_sum.setText(str(res))
 
     def select_info_by_number(self):
         res = db.get_flight_info_by_number(str(self.enter_number.text()))
@@ -93,12 +106,6 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def all_baggage_cost(self):
         self.label.setText(str(db.all_baggage_cost(str(self.line.text()))))
-
-    def hide1(self):
-        self.frame_2.hide()
-    
-    def show1(self):
-        self.frame_1.raise_()
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
