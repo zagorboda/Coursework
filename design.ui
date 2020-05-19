@@ -39,7 +39,7 @@
      </sizepolicy>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-color:white;</string>
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -51,7 +51,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>100</y>
+       <y>370</y>
        <width>130</width>
        <height>60</height>
       </rect>
@@ -65,18 +65,18 @@
      <property name="styleSheet">
       <string notr="true">margin:10px;
 border-radius: 15px;
-background-color:#42ecf5;
+border:3px solid teal;
 </string>
      </property>
      <property name="text">
-      <string>Cahnge flight info</string>
+      <string>Change flight info</string>
      </property>
     </widget>
     <widget class="QPushButton" name="get_info">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>20</y>
+       <y>40</y>
        <width>130</width>
        <height>60</height>
       </rect>
@@ -90,18 +90,18 @@ background-color:#42ecf5;
      <property name="styleSheet">
       <string notr="true">margin:10px;
 border-radius: 15px;
-background-color:#42ecf5;
+border:3px solid teal;
 </string>
      </property>
      <property name="text">
-      <string>Get flight info</string>
+      <string>View flight info</string>
      </property>
     </widget>
     <widget class="QPushButton" name="login">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>410</y>
+       <y>430</y>
        <width>90</width>
        <height>50</height>
       </rect>
@@ -109,11 +109,98 @@ background-color:#42ecf5;
      <property name="styleSheet">
       <string notr="true">margin:10px;
 border-radius: 15px;
-background-color:#42ecf5;
+border:3px solid teal;
 </string>
      </property>
      <property name="text">
       <string>Login</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="additional_info">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>100</y>
+       <width>130</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">margin:10px;
+border-radius: 15px;
+border:3px solid teal;
+</string>
+     </property>
+     <property name="text">
+      <string>Additional info</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="view_info_admin">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>310</y>
+       <width>130</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">margin:10px;
+border-radius: 15px;
+border:3px solid teal;
+</string>
+     </property>
+     <property name="text">
+      <string>View flight info</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>20</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>User</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>290</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Admin</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>260</y>
+       <width>141</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </widget>
@@ -188,7 +275,7 @@ background-color:#42ecf5;
        <string>Direction</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radion_date">
+     <widget class="QRadioButton" name="radio_date">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -474,6 +561,111 @@ border-radius:5px;</string>
        <property name="text">
         <string/>
        </property>
+      </widget>
+      <widget class="QFrame" name="get_info_date">
+       <property name="geometry">
+        <rect>
+         <x>-1</x>
+         <y>-1</y>
+         <width>641</width>
+         <height>341</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>20</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enter date</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="date_input">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>30</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:1px solid;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="find_info_date_btn">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>70</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:2px solid teal;
+border-radius:5px;</string>
+        </property>
+        <property name="text">
+         <string>Find</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="date_input_error">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>30</y>
+          <width>111</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="flight_info_by_date_list">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>110</y>
+          <width>581</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>

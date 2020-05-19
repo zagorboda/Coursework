@@ -13,12 +13,15 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
         self.radio_number.toggled.connect(self.onClicked)
         self.radio_direction.toggled.connect(self.onClicked)
+        self.radio_date.toggled.connect(self.onClicked)
         self.radio_number.setChecked(True)
 
         self.get_info_direction.hide()
+        self.get_info_date.hide()
 
         self.find_info_number_btn.clicked.connect(self.select_info_by_number)
         self.find_info_direction_btn.clicked.connect(self.select_info_by_direction)
+        self.find_info_date_btn.clicked.connect(self.select_info_by_date)
 
         # self.statusbar.showMessage("123")
         # self.statusBar().hide()
@@ -37,6 +40,10 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 self.get_info_direction.hide()
             if radioBtn.text() == "Direction":
                 self.get_info_direction.show()
+                self.get_info_date.hide()
+            if radioBtn.text() == "Date":
+                self.get_info_direction.show()
+                self.get_info_date.show()
 
     def select_free_seats(self):
         self.label.setText(str(db.select_free_seats(str(self.line.text()))))
@@ -69,6 +76,20 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 self.flight_info_by_direction_list.addItem("Free seats : {}".format(res[3]))
                 self.flight_info_by_direction_list.addItem("Date : {}".format(res[4]))
                 self.flight_info_by_direction_list.addItem("")
+    
+    def select_info_by_date(self):
+        results = db.get_flight_info_by_date(str(self.date_input.text()))
+        if results == -1:
+            self.date_input_error.setText("No such flight")
+        else:
+            self.flight_info_by_date_list.clear()
+            self.date_input_error.setText("")
+            for res in results:
+                self.flight_info_by_date_list.addItem("Number : {}".format(res[0]))
+                self.flight_info_by_date_list.addItem("Flight from {} to {}".format(res[1].split('|')[0], res[1].split('|')[1]))
+                self.flight_info_by_date_list.addItem("All seats : {}".format(res[2]))
+                self.flight_info_by_date_list.addItem("Free seats : {}".format(res[3]))
+                self.flight_info_by_date_list.addItem("")
 
     def all_baggage_cost(self):
         self.label.setText(str(db.all_baggage_cost(str(self.line.text()))))
