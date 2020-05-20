@@ -95,8 +95,6 @@ def get_short_flight_info_by_direction(direction):
     connection = connector()
     curs = cursor(connection)
 
-    # print("\nFlights from   " + direction.split('|')[0] + "   to   " + direction.split('|')[1] + "\n")
-
     result = []
 
     curs.execute("SELECT number,date FROM flights WHERE direction = '{}'".format(direction))
@@ -163,43 +161,16 @@ def get_flight_info_by_number(number):
     else:
         return rows
 
+def get_all_flight_numbers():
+    connection = connector()
+    curs = cursor(connection)
 
-# sql_command = "INSERT INTO table1 VALUES ('abc', 34);"
+    curs.execute("SELECT number FROM flights")
+    rows = curs.fetchall()
+    connection.close()
 
-# curs.execute(sql_command)
+    result = []
+    for row in rows:
+        result.append(row[0])
 
-# curs.execute("SELECT * FROM test WHERE surname = 'link'")
-
-# curs.execute("SELECT * FROM flights")
-
-# curs.execute("UPDATE test SET surname = 'TEST', age = 45 WHERE name = 'TOM'")
-
-# curs.execute("INSERT INTO flights (surname, name, age) VALUES (?, ?, ?);", ("Howking", "Steve", 50))
-
-# curs.execute("INSERT INTO flights (number, direction, all_seats, free_seats, date) VALUES (?, ?, ?, ?, ?);", 
-# ("TT1216", "New-York|Tokyo", 340, 230, "25.05.2020"))
-
-# curs.execute("DELETE FROM test WHERE id = 5")
-
-# data = ["1234", "New-York|Tokyo", 340, 230, "25.05.2020", "economy"]
-
-# insert_flight(data)
-
-# insert_flight(["123456", "New-York|MilaParis", 440, 250, "30.05.2020", "business"])
-
-# surname = 'test'
-
-# departure = "Kyiv"
-# arrival = "Milan"
-# direction = departure + "|" + arrival
-
-# get_flight_info_by_direction(direction)
-
-# date = "25.05.2020"
-
-# get_flight_info_by_date(date)
-
-# curs.execute("SELECT number FROM passenger WHERE surname = 'abc'")
-
-# number = 123
-# select_free_seats(number, curs)
+    return result

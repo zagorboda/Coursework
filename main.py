@@ -35,6 +35,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.find_info_direction_btn_2.clicked.connect(self.select_info_by_number_admin)
 
         self.apply_insert_flight_info.clicked.connect(self.insert_fligh_info)
+        self.apply_insert_passenger_info.clicked.connect(self.insert_passenger_info)
 
         # self.tabWidget.setStyleSheet("""
         # QTabBar::tab {
@@ -161,10 +162,6 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                     self.flight_info_by_direction_list_2.addItem("Date : {}".format(result[i]))
 
     def insert_fligh_info(self):
-        # self.flight_insert_error.setText("")
-        # self.amount_of_seats_error.setText("")
-        # self.date_insert_error.setText("")
-
         number_error = False
         direction_error = False
         seats_error = False
@@ -230,6 +227,73 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
             if res == -1:
                 self.insert_error.setText("Flight with this number alredy exist")
         
+    def insert_passenger_info(self):
+        surname = self.insert_passenger_info_surname_input.text()
+        flight_number = self.insert_passenger_info_number_input.text()
+        flight_class = str(self.insert_passenger_info_class_combo.currentText())
+        baggage_cost = self.insert_passenger_info_baggage_input.text()
+        ticket_cost = self.insert_passenger_info_cost_input.text()
+
+        surname_error = False
+        number_error = False
+        baggage_error = False
+        ticket_error = False
+
+        if len(surname) == 0:
+            surname_error = True
+        
+        if len(flight_number) == 0:
+            number_error = True
+        
+        if len(baggage_cost) == 0:
+            baggage_error = True
+
+        if len(ticket_cost) == 0:
+            ticket_error = True
+        
+        try:
+            float(baggage_cost)
+        except ValueError:
+            baggage_error = True
+        else:
+            if float(baggage_cost) < 0:
+                baggage_error = True
+            else:
+                baggage_error = False
+        
+        try:
+            float(ticket_cost)
+        except ValueError:
+            ticket_error = True
+        else:
+            if float(ticket_cost) <= 0:
+                ticket_error = True
+            else:
+                ticket_error = False
+        
+        numbers = db.get_all_flight_numbers()
+
+        if flight_number not in numbers:
+            number_error = True
+
+        if number_error is True:
+            self.passenger_flight_input_error.setText("No such flight")
+        else:
+            self.passenger_flight_input_error.setText("")
+
+        if baggage_error is True:
+            self.baggage_cost_input_error.setText("Incorrect input")
+        else:
+            self.baggage_cost_input_error.setText("")
+
+        if ticket_error is True:
+            self.ticket_cost_input_error.setText("Incorrect input")
+        else:
+            self.ticket_cost_input_error.setText("")
+        
+        if surname_error == False and number_error == False and baggage_error == False and ticket_error == False:
+            db.insert_passenger([surname, flight_number, flight_class, baggage_cost, ticket_cost])
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

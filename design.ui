@@ -1754,12 +1754,12 @@ font-weight:bold;</string>
          <string notr="true">border:1px solid teal;</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="insert_passenger_info_class_combo">
         <property name="geometry">
          <rect>
-          <x>220</x>
+          <x>188</x>
           <y>130</y>
-          <width>69</width>
+          <width>101</width>
           <height>22</height>
          </rect>
         </property>
@@ -1778,11 +1778,117 @@ font-weight:bold;</string>
           <string>Economy</string>
          </property>
         </item>
-        <item>
-         <property name="text">
-          <string/>
-         </property>
-        </item>
+       </widget>
+       <widget class="QPushButton" name="apply_insert_passenger_info">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>300</y>
+          <width>101</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">margin:10px;
+border-radius: 15px;
+background-color:teal;
+color:white;
+font-weight:bold;</string>
+        </property>
+        <property name="text">
+         <string>Apply</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="passenger_flight_input_error">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>80</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="baggage_cost_input_error">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>180</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ticket_cost_input_error">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>230</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="insert_passenger_error">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>310</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
        </widget>
       </widget>
      </widget>
