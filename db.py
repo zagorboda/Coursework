@@ -89,7 +89,9 @@ def get_flight_info_by_surname(surname):
             result.append(rows_data)
     connection.close()
 
-    return result
+    if len(result) != 0:
+        return result
+    return -1
 
 def get_short_flight_info_by_direction(direction):
     connection = connector()
@@ -174,3 +176,16 @@ def get_all_flight_numbers():
         result.append(row[0])
 
     return result
+
+def decrement_free_seats(number):
+    connection = connector()
+    curs = cursor(connection)
+
+    curs.execute("SELECT free_seats FROM flights WHERE number='{}'".format(number))
+
+    rows = curs.fetchall()
+    new_free_seats = rows[0][0] - 1
+    curs.execute("UPDATE flights SET free_seats={} WHERE number = '{}'".format(new_free_seats,number))
+
+    connection.commit()
+    connection.close()  

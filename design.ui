@@ -1086,7 +1086,7 @@ border-radius:5px;</string>
          <rect>
           <x>340</x>
           <y>20</y>
-          <width>110</width>
+          <width>161</width>
           <height>20</height>
          </rect>
         </property>
@@ -1215,7 +1215,7 @@ border-radius:5px;</string>
          <rect>
           <x>240</x>
           <y>60</y>
-          <width>141</width>
+          <width>161</width>
           <height>20</height>
          </rect>
         </property>
@@ -1339,7 +1339,7 @@ color:orange;</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
+          <y>90</y>
           <width>81</width>
           <height>21</height>
          </rect>
@@ -1356,8 +1356,8 @@ color:orange;</string>
        <widget class="QLabel" name="label_23">
         <property name="geometry">
          <rect>
-          <x>280</x>
-          <y>110</y>
+          <x>10</x>
+          <y>140</y>
           <width>51</width>
           <height>21</height>
          </rect>
@@ -1375,7 +1375,7 @@ color:orange;</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>180</y>
+          <y>190</y>
           <width>161</width>
           <height>21</height>
          </rect>
@@ -1410,7 +1410,7 @@ color:orange;</string>
        <widget class="QLineEdit" name="insert_flight_info_number_input">
         <property name="geometry">
          <rect>
-          <x>170</x>
+          <x>180</x>
           <y>40</y>
           <width>113</width>
           <height>20</height>
@@ -1423,8 +1423,8 @@ color:orange;</string>
        <widget class="QLineEdit" name="insert_flight_info_departure_input">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>110</y>
+          <x>180</x>
+          <y>90</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -1439,8 +1439,8 @@ color:orange;</string>
        <widget class="QLineEdit" name="insert_flight_info_arrival_input">
         <property name="geometry">
          <rect>
-          <x>340</x>
-          <y>110</y>
+          <x>180</x>
+          <y>140</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -1453,7 +1453,7 @@ color:orange;</string>
         <property name="geometry">
          <rect>
           <x>180</x>
-          <y>180</y>
+          <y>190</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -1465,7 +1465,7 @@ color:orange;</string>
        <widget class="QLineEdit" name="insert_flight_info_date_input">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>180</x>
           <y>250</y>
           <width>113</width>
           <height>20</height>
@@ -1479,7 +1479,7 @@ color:orange;</string>
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>300</y>
+          <y>310</y>
           <width>101</width>
           <height>51</height>
          </rect>
@@ -1505,8 +1505,8 @@ font-weight:bold;</string>
        <widget class="QLabel" name="amount_of_seats_error">
         <property name="geometry">
          <rect>
-          <x>330</x>
-          <y>180</y>
+          <x>320</x>
+          <y>190</y>
           <width>121</width>
           <height>16</height>
          </rect>
@@ -1526,7 +1526,7 @@ font-weight:bold;</string>
        <widget class="QLabel" name="date_insert_error">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>320</x>
           <y>250</y>
           <width>121</width>
           <height>16</height>
@@ -1565,11 +1565,11 @@ font-weight:bold;</string>
          <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="direction_error">
+       <widget class="QLabel" name="departure_error">
         <property name="geometry">
          <rect>
-          <x>480</x>
-          <y>110</y>
+          <x>320</x>
+          <y>90</y>
           <width>121</width>
           <height>16</height>
          </rect>
@@ -1590,8 +1590,29 @@ font-weight:bold;</string>
         <property name="geometry">
          <rect>
           <x>140</x>
-          <y>320</y>
+          <y>330</y>
           <width>291</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="arrival_error">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>140</y>
+          <width>121</width>
           <height>16</height>
          </rect>
         </property>
@@ -1874,8 +1895,29 @@ font-weight:bold;</string>
          <rect>
           <x>150</x>
           <y>310</y>
-          <width>141</width>
+          <width>261</width>
           <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="passenger_surname_input_error">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>30</y>
+          <width>141</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="font">

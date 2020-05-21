@@ -37,16 +37,6 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.apply_insert_flight_info.clicked.connect(self.insert_fligh_info)
         self.apply_insert_passenger_info.clicked.connect(self.insert_passenger_info)
 
-        # self.tabWidget.setStyleSheet("""
-        # QTabBar::tab {
-        #     //margin-left:10px;
-        #     color:red;
-        #     }
-        # """)
-
-        # # self.listWidget.setMinimumWidth(self.listWidget.sizeHintForColumn(0) + 30)
-        # self.listWidget.setMinimumWidth(400)
-
     def log_in(self):
         login = self.login_input.text()
         password = self.password_input.text()
@@ -163,7 +153,8 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def insert_fligh_info(self):
         number_error = False
-        direction_error = False
+        departure_error = False
+        arrival_error = False
         seats_error = False
         date_error = False
 
@@ -176,8 +167,11 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         if len(number) == 0:
             number_error = True
         
-        if len(departure) == 0 or len(arrival) == 0:
-            direction_error = True
+        if len(departure) == 0:
+            departure_error = True
+        
+        if len(arrival) == 0:
+            arrival_error = True
 
         try:
             int(all_seats)
@@ -204,11 +198,15 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         else:
             self.number_error.setText("")
 
-        if direction_error is True:
-            self.direction_error.setText("Incorrect input")
+        if departure_error is True:
+            self.departure_error.setText("Incorrect input")
         else:
-            direction = departure + "|" + arrival
-            self.direction_error.setText("")
+            self.departure_error.setText("")
+
+        if arrival_error is True:
+            self.arrival_error.setText("Incorrect input")
+        else:
+            self.arrival_error.setText("")
 
         if seats_error is True:
             self.amount_of_seats_error.setText("Incorrect input")
@@ -219,8 +217,11 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
             self.date_insert_error.setText("Incorrect input")
         else:
             self.date_insert_error.setText("")
+        
+        
 
-        if number_error is False and direction_error is False and seats_error is False and date_error is False:
+        if number_error is False and departure_error is False and arrival_error is False and seats_error is False and date_error is False:
+            direction = departure + "|" + arrival
             res = db.insert_flight([number, direction, all_seats, all_seats, date])
             if res == 0:
                 self.insert_error.setText("Flight successfully added")
@@ -276,6 +277,11 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         if flight_number not in numbers:
             number_error = True
 
+        if surname_error is True:
+            self.passenger_surname_input_error.setText("Incorrect input")
+        else:
+            self.passenger_surname_input_error.setText("")
+
         if number_error is True:
             self.passenger_flight_input_error.setText("No such flight")
         else:
@@ -293,17 +299,22 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         
         if surname_error == False and number_error == False and baggage_error == False and ticket_error == False:
             db.insert_passenger([surname, flight_number, flight_class, baggage_cost, ticket_cost])
+            self.insert_passenger_error.setText("Passenger info successfully added")
+            self.insert_passenger_info_surname_input.clear()
+            self.insert_passenger_info_baggage_input.clear()
+            self.insert_passenger_info_cost_input.clear()
+            db.decrement_free_seats(flight_number)
 
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle('Fusion')
     window = ExampleApp()
-    window.setWindowTitle('App')
-    # window.setGeometry(100, 100, 800, 400)
+    window.setWindowTitle('Airport')
     window.setFixedSize(800, 500)
     window.show()
     app.exec_()
 
 if __name__ == '__main__':
     main()
+    
