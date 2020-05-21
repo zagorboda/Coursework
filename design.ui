@@ -214,7 +214,7 @@ border:3px solid teal;
      <string notr="true">border:none;</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="styleSheet">
@@ -384,7 +384,7 @@ border-radius:5px;</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">border:1px solid;</string>
+          <string notr="true">border:1px solid teal;</string>
          </property>
         </widget>
         <widget class="QLabel" name="find_number_error">
@@ -424,7 +424,7 @@ color:orange;</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">border:1px solid;</string>
+          <string notr="true">border:1px solid teal;</string>
          </property>
         </widget>
         <widget class="QPushButton" name="find_info_direction_btn">
@@ -513,7 +513,7 @@ border-radius:5px;</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">border:1px solid;</string>
+          <string notr="true">border:1px solid teal;</string>
          </property>
         </widget>
         <widget class="QLabel" name="find_direction_error">
@@ -571,7 +571,7 @@ color:orange;</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">border:1px solid;</string>
+          <string notr="true">border:1px solid teal;</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_5">
@@ -671,7 +671,7 @@ color:orange;</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -751,7 +751,7 @@ border-radius:5px;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid;</string>
+         <string notr="true">border:1px solid teal;</string>
         </property>
        </widget>
        <widget class="QLabel" name="free_seats_number_input_error">
@@ -827,7 +827,7 @@ color:orange;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid;</string>
+         <string notr="true">border:1px solid teal;</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_13">
@@ -980,7 +980,7 @@ color:orange;</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -1078,7 +1078,7 @@ border-radius:5px;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid;</string>
+         <string notr="true">border:1px solid teal;</string>
         </property>
        </widget>
        <widget class="QLabel" name="find_surname_error">
@@ -1118,7 +1118,7 @@ color:orange;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid;</string>
+         <string notr="true">border:1px solid teal;</string>
         </property>
        </widget>
        <widget class="QPushButton" name="find_info_direction_btn_2">
@@ -1207,7 +1207,7 @@ border-radius:5px;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid;</string>
+         <string notr="true">border:1px solid teal;</string>
         </property>
        </widget>
        <widget class="QLabel" name="find_direction_error_2">
@@ -1287,7 +1287,7 @@ color:orange;</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>

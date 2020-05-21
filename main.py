@@ -1,5 +1,6 @@
-from PyQt5 import QtWidgets
+# from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
+from PyQt5 import QtGui, QtWidgets
 import sys
 
 import design
@@ -11,6 +12,8 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        self.setWindowIcon(QtGui.QIcon('airplane.svg'))
 
         self.logged = True #---------------------------------------------------------------#
 
@@ -227,6 +230,11 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 self.insert_error.setText("Flight successfully added")
             if res == -1:
                 self.insert_error.setText("Flight with this number alredy exist")
+            self.insert_flight_info_number_input.clear()
+            self.insert_flight_info_departure_input.clear()
+            self.insert_flight_info_arrival_input.clear()
+            self.insert_flight_info_all_seats_input.clear()
+            self.insert_flight_info_date_input.clear()
         
     def insert_passenger_info(self):
         surname = self.insert_passenger_info_surname_input.text()
@@ -298,12 +306,16 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
             self.ticket_cost_input_error.setText("")
         
         if surname_error == False and number_error == False and baggage_error == False and ticket_error == False:
-            db.insert_passenger([surname, flight_number, flight_class, baggage_cost, ticket_cost])
-            self.insert_passenger_error.setText("Passenger info successfully added")
-            self.insert_passenger_info_surname_input.clear()
-            self.insert_passenger_info_baggage_input.clear()
-            self.insert_passenger_info_cost_input.clear()
-            db.decrement_free_seats(flight_number)
+            free_seats = db.select_free_seats(flight_number)
+            if free_seats <= 0:
+                self.insert_passenger_error.setText("Flight doesn't have free seats")
+            else:
+                db.insert_passenger([surname, flight_number, flight_class, baggage_cost, ticket_cost])
+                self.insert_passenger_error.setText("Passenger info successfully added")
+                self.insert_passenger_info_surname_input.clear()
+                self.insert_passenger_info_baggage_input.clear()
+                self.insert_passenger_info_cost_input.clear()
+                db.decrement_free_seats(flight_number)
 
 
 def main():
