@@ -1,4 +1,6 @@
 TODO.txt
 /__pycache__/
+/build/
 test_design.py
-airplane.svg
+main.spec
+plane.ico

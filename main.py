@@ -1,4 +1,3 @@
-# from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtWidgets
 import sys
@@ -8,14 +7,12 @@ import db
 
 import datetime
 
-class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
+class App(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
 
-        self.setWindowIcon(QtGui.QIcon('airplane.svg'))
-
-        self.logged = True #---------------------------------------------------------------#
+        self.logged = False
 
         self.find_info_number_btn.clicked.connect(self.select_info_by_number)
         self.find_info_direction_btn.clicked.connect(self.select_info_by_direction)
@@ -35,7 +32,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.label_13.hide()
 
         self.find_info_surname_btn.clicked.connect(self.show_info_by_surname)
-        self.find_info_direction_btn_2.clicked.connect(self.select_info_by_number_admin)
+        self.find_info_direction_btn_2.clicked.connect(self.select_info_by_direction_admin)
 
         self.apply_insert_flight_info.clicked.connect(self.insert_fligh_info)
         self.apply_insert_passenger_info.clicked.connect(self.insert_passenger_info)
@@ -135,7 +132,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 self.flight_info_by_surname_list.addItem("Date : {}".format(res[4]))
                 self.flight_info_by_surname_list.addItem("")
     
-    def select_info_by_number_admin(self):
+    def select_info_by_direction_admin(self):
         dest = self.departure_input_2.text()
         arr = self.arrival_input_2.text()
         result = db.get_short_flight_info_by_direction(str(dest + "|" + arr))
@@ -219,22 +216,20 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         if date_error is True:
             self.date_insert_error.setText("Incorrect input")
         else:
-            self.date_insert_error.setText("")
-        
-        
+            self.date_insert_error.setText("")        
 
         if number_error is False and departure_error is False and arrival_error is False and seats_error is False and date_error is False:
             direction = departure + "|" + arrival
             res = db.insert_flight([number, direction, all_seats, all_seats, date])
             if res == 0:
                 self.insert_error.setText("Flight successfully added")
+                self.insert_flight_info_number_input.clear()
+                self.insert_flight_info_departure_input.clear()
+                self.insert_flight_info_arrival_input.clear()
+                self.insert_flight_info_all_seats_input.clear()
+                self.insert_flight_info_date_input.clear()
             if res == -1:
                 self.insert_error.setText("Flight with this number alredy exist")
-            self.insert_flight_info_number_input.clear()
-            self.insert_flight_info_departure_input.clear()
-            self.insert_flight_info_arrival_input.clear()
-            self.insert_flight_info_all_seats_input.clear()
-            self.insert_flight_info_date_input.clear()
         
     def insert_passenger_info(self):
         surname = self.insert_passenger_info_surname_input.text()
@@ -321,7 +316,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle('Fusion')
-    window = ExampleApp()
+    window = App()
     window.setWindowTitle('Airport')
     window.setFixedSize(800, 500)
     window.show()

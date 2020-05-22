@@ -1,7 +1,31 @@
 import sqlite3
+import os
 
 def connector():
+    if os.path.isfile("airport.db"):
+        connection = sqlite3.connect("airport.db")
+        return connection
     connection = sqlite3.connect("airport.db")
+    curs = cursor(connection)
+    curs.execute(''' CREATE TABLE "flights" (
+	"number"	TEXT NOT NULL,
+	"direction"	TEXT NOT NULL,
+	"all_seats"	INTEGER NOT NULL,
+	"free_seats"	INTEGER NOT NULL,
+	"date"	TEXT NOT NULL,
+	PRIMARY KEY("number")
+    ) ''')
+
+    curs.execute(''' CREATE TABLE "passenger" (
+	"surname"	TEXT NOT NULL,
+	"number"	TEXT NOT NULL,
+	"class"	TEXT NOT NULL,
+	"baggage"	REAL NOT NULL,
+	"cost"	REAL NOT NULL
+    ) ''')
+
+    connection.commit()
+    
     return connection
 
 def cursor(connection):
@@ -188,4 +212,4 @@ def decrement_free_seats(number):
     curs.execute("UPDATE flights SET free_seats={} WHERE number = '{}'".format(new_free_seats,number))
 
     connection.commit()
-    connection.close()  
+    connection.close()
